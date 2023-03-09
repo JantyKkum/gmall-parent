@@ -38,10 +38,10 @@ namespace :接口的全限定类名
                 or (bai.category_level = 1 and bai.category_id = #{category1Id})
             </if>
             <if test="category2Id != null and category2Id != 0">
-                or (bai.category_level = 1 and bai.category_id = #{category2Id})
+                or (bai.category_level = 2 and bai.category_id = #{category2Id})
             </if>
             <if test="category3Id != null and category3Id != 0">
-                or (bai.category_level = 1 and bai.category_id = #{category3Id})
+                or (bai.category_level = 3 and bai.category_id = #{category3Id})
             </if>
         </where>
 

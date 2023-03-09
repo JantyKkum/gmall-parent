@@ -1,5 +1,6 @@
 package com.atguigu.gmall.product.service.impl;
 
+import com.atguigu.gmall.common.result.Result;
 import com.atguigu.gmall.model.product.*;
 import com.atguigu.gmall.product.mapper.*;
 import com.atguigu.gmall.product.service.ManageService;
@@ -10,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,6 +70,8 @@ public class ManageServiceImpl implements ManageService {
 
     @Autowired
     private SkuSaleAttrValueMapper skuSaleAttrValueMapper;
+
+
 
 
     /**
@@ -345,6 +350,50 @@ public class ManageServiceImpl implements ManageService {
 
 
     }
+
+    /**
+     * SKU分页列表
+     * @param pageParam
+     * @return
+     */
+    @Override
+    public IPage<SkuInfo> getPage(Page<SkuInfo> pageParam) {
+        QueryWrapper<SkuInfo> queryWrapper = new QueryWrapper<>();
+        queryWrapper.orderByDesc("id");
+
+        IPage<SkuInfo> page = skuInfoMapper.selectPage(pageParam, queryWrapper);
+        return page;
+    }
+
+    /**
+     * 商品上架
+     * @param skuId
+     */
+    @Override
+    @Transactional
+    public void onSale(Long skuId) {
+        // 更改销售状态
+        SkuInfo skuInfoUp = new SkuInfo();
+        skuInfoUp.setId(skuId);
+        skuInfoUp.setIsSale(1);
+        skuInfoMapper.updateById(skuInfoUp);
+    }
+
+    /**
+     * 商品下架
+     * @param skuId
+     */
+    @Override
+    @Transactional
+    public void cancelSale(Long skuId) {
+        // 更改销售状态
+        SkuInfo skuInfoUp = new SkuInfo();
+        skuInfoUp.setId(skuId);
+        skuInfoUp.setIsSale(0);
+        skuInfoMapper.updateById(skuInfoUp);
+    }
+
+
 
 
 }
