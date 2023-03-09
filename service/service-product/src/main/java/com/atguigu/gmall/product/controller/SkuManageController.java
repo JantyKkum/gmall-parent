@@ -48,17 +48,17 @@ public class SkuManageController {
         return Result.ok(spuImageList);
     }
 
-//    /**
-//     * 保存sku
-//     * @param skuInfo
-//     * @return
-//     */
-//    @PostMapping("/saveSkuInfo")
-//    public Result saveSkuInfo(@RequestBody SkuInfo skuInfo) {
-//        // 调用服务层
-//        manageService.saveSkuInfo(skuInfo);
-//        return Result.ok();
-//    }
+    /**
+     * 保存sku
+     * @param skuInfo
+     * @return
+     */
+    @PostMapping("/saveSkuInfo")
+    public Result saveSkuInfo(@RequestBody SkuInfo skuInfo) {
+        // 调用服务层
+        manageService.saveSkuInfo(skuInfo);
+        return Result.ok();
+    }
 
 }
 

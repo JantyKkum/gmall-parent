@@ -43,4 +43,8 @@ public interface ManageService {
 
     //根据spuId 查询spuImageList
     List<SpuImage> getSpuImageList(Long spuId);
+
+    //保存sku
+    void saveSkuInfo(SkuInfo skuInfo);
+
 }
