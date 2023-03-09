@@ -21,7 +21,6 @@ import java.util.List;
  * @description:
  */
 @Service
-@SuppressWarnings("all")
 public class ManageServiceImpl implements ManageService {
 
     @Autowired
@@ -267,6 +266,29 @@ public class ManageServiceImpl implements ManageService {
         }
     }
 
+    /**
+     * 根据spuId 查询（销售属性和销售属性值）集合
+     * @param spuId
+     * @return
+     */
+    @Override
+    public List<SpuSaleAttr> getSpuSaleAttrList(Long spuId) {
+
+        return spuSaleAttrMapper.selectSpuSaleAttrList();
+    }
+
+    /**
+     * 根据spuId 查询spuImageList
+     * @param spuId
+     * @return
+     */
+    @Override
+    public List<SpuImage> getSpuImageList(Long spuId) {
+        QueryWrapper<SpuImage> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("spu_id",spuId);
+
+        return spuImageMapper.selectList(queryWrapper);
+    }
 
 
 }

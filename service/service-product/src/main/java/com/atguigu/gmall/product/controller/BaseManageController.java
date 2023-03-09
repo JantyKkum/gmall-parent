@@ -45,7 +45,7 @@ public class BaseManageController {
      * @param category3Id
      * @return
      */
-    @GetMapping("/attrInfoList/(category1Id)/(category2Id)/(category3Id]")
+    @GetMapping("/attrInfoList/{category1Id}/{category2Id}/{category3Id}")
     public Result attrInfoList(@PathVariable Long category1Id,
                                        @PathVariable Long category2Id,
                                        @PathVariable Long category3Id){

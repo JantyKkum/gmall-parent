@@ -10,6 +10,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @date: 2023/3/2 8:37
  * @description:
  */
-//@Mapper
+@Mapper
 public interface BaseAttrValueMapper extends BaseMapper<BaseAttrValue> {
 }

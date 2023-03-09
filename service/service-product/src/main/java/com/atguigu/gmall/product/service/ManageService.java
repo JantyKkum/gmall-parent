@@ -37,4 +37,10 @@ public interface ManageService {
 
     //保存spu
     void saveSpuInfo(SpuInfo spuInfo);
+
+    //根据spuId 查询（销售属性和销售属性值）集合
+    List<SpuSaleAttr> getSpuSaleAttrList(Long spuId);
+
+    //根据spuId 查询spuImageList
+    List<SpuImage> getSpuImageList(Long spuId);
 }
