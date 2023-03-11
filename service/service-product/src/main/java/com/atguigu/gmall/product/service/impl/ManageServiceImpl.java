@@ -71,7 +71,8 @@ public class ManageServiceImpl implements ManageService {
     @Autowired
     private SkuSaleAttrValueMapper skuSaleAttrValueMapper;
 
-
+    @Autowired
+    private BaseCategoryViewMapper baseCategoryViewMapper;
 
 
     /**
@@ -393,7 +394,32 @@ public class ManageServiceImpl implements ManageService {
         skuInfoMapper.updateById(skuInfoUp);
     }
 
+    /**
+     * 根据skuId获取sku信息与图片信息
+     * @param skuId
+     * @return
+     */
+    @Override
+    public SkuInfo getSkuInfo(Long skuId) {
+        SkuInfo skuInfo = skuInfoMapper.selectById(skuId);
+        // 根据skuId 查询图片列表集合
+        QueryWrapper<SkuImage> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("sku_id", skuId);
+        List<SkuImage> skuImageList = skuImageMapper.selectList(queryWrapper);
 
+        skuInfo.setSkuImageList(skuImageList);
+        return skuInfo;
+    }
+
+    /**
+     * 通过三级分类id查询分类信息
+     * @param category3Id
+     * @return
+     */
+    @Override
+    public BaseCategoryView getCategoryViewByCategory3Id(Long category3Id) {
+        return baseCategoryViewMapper.selectById(category3Id);
+    }
 
 
 }
