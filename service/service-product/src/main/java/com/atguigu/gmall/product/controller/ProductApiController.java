@@ -1,18 +1,20 @@
 package com.atguigu.gmall.product.controller;
 
-import com.atguigu.gmall.model.product.BaseCategoryView;
-import com.atguigu.gmall.model.product.SkuInfo;
-import com.atguigu.gmall.model.product.SpuSaleAttr;
+import com.alibaba.fastjson.JSON;
+import com.atguigu.gmall.model.product.*;
 import com.atguigu.gmall.product.service.ManageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @author: Janty
@@ -70,7 +72,6 @@ public class ProductApiController {
         return manageService.getSpuSaleAttrListCheckBySku(skuId, spuId);
     }
 
-
     /**
      * 根据spuId 查询map 集合属性
      * @param spuId
@@ -80,5 +81,22 @@ public class ProductApiController {
     public Map getSkuValueIdsMap(@PathVariable("spuId") Long spuId){
         return manageService.getSkuValueIdsMap(spuId);
     }
+
+    //  根据spuId 获取海报数据
+    @GetMapping("inner/findSpuPosterBySpuId/{spuId}")
+    public List<SpuPoster> findSpuPosterBySpuId(@PathVariable Long spuId){
+        return manageService.findSpuPosterBySpuId(spuId);
+    }
+
+    /**
+     * 通过skuId 集合来查询数据
+     * @param skuId
+     * @return
+     */
+    @GetMapping("inner/getAttrList/{skuId}")
+    public List<BaseAttrInfo> getAttrList(@PathVariable("skuId") Long skuId){
+        return manageService.getAttrList(skuId);
+    }
+
 
 }

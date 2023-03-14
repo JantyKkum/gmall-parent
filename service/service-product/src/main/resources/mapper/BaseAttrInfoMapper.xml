@@ -7,7 +7,7 @@ namespace :接口的全限定类名
 <mapper namespace="com.atguigu.gmall.product.mapper.BaseAttrInfoMapper">
 
 <!--    处理结果集-->
-    <resultMap id="baseAttrValueMap" type="com.atguigu.gmall.model.product.BaseAttrInfo" autoMapping="true">
+    <resultMap id="baseAttrInfoMap" type="com.atguigu.gmall.model.product.BaseAttrInfo" autoMapping="true">
 <!--        对有争议的字段进行手动映射-->
         <id column="id" property="id"></id>
 
@@ -21,7 +21,7 @@ namespace :接口的全限定类名
     </resultMap>
 
 <!--根据分类id查询平台属性-->
-    <select id="selectAttrInfoList" resultMap="baseAttrValueMap">
+    <select id="selectAttrInfoList" resultMap="baseAttrInfoMap">
         select
             bai.id,
             bai.attr_name,
@@ -46,6 +46,24 @@ namespace :接口的全限定类名
         </where>
 
         order by bai.category_level,bai.id
+    </select>
+
+
+    <select id="selectBaseAttrInfoListBySkuId" resultMap="baseAttrInfoMap">
+        SELECT
+            bai.id,
+            bai.attr_name,
+            bai.category_id,
+            bai.category_level,
+            bav.id attr_value_id,
+            bav.value_name,
+            bav.attr_id
+        FROM
+            base_attr_info bai
+                INNER JOIN base_attr_value bav ON bai.id = bav.attr_id
+                INNER JOIN sku_attr_value sav ON sav.value_id = bav.id
+        WHERE
+            sav.sku_id = #{skuId}
     </select>
 
 </mapper>

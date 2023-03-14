@@ -449,6 +449,11 @@ public class ManageServiceImpl implements ManageService {
         return spuSaleAttrMapper.selectSpuSaleAttrListCheckBySku(skuId, spuId);
     }
 
+    /**
+     * 根据spuId 查询map 集合属性
+     * @param spuId
+     * @return
+     */
     @Override
     public Map getSkuValueIdsMap(Long spuId) {
         Map<Object, Object> map = new HashMap<>();
@@ -462,6 +467,30 @@ public class ManageServiceImpl implements ManageService {
             }
         }
         return map;
+    }
+
+    /**
+     * 根据spuid获取商品海报
+     * @param spuId
+     * @return
+     */
+    @Override
+    public List<SpuPoster> findSpuPosterBySpuId(Long spuId) {
+        QueryWrapper<SpuPoster> spuInfoQueryWrapper = new QueryWrapper<>();
+        spuInfoQueryWrapper.eq("spu_id",spuId);
+        List<SpuPoster> spuPosterList = spuPosterMapper.selectList(spuInfoQueryWrapper);
+        return spuPosterList;
+    }
+
+    /**
+     * 通过skuId 集合来查询数据（Sku对应的平台属性）
+     * @param skuId
+     * @return
+     */
+    @Override
+    public List<BaseAttrInfo> getAttrList(Long skuId) {
+
+        return baseAttrInfoMapper.selectBaseAttrInfoListBySkuId(skuId);
     }
 
 }

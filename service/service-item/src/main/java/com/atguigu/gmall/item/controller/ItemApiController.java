@@ -32,7 +32,7 @@ public class ItemApiController {
      */
     @GetMapping("{skuId}")
     public Result getItem(@PathVariable Long skuId){
-        Map<String,Object> result = itemService.getBySkuId(skuId);
+        Map<String,Object> result = itemService.getItemBySkuId(skuId);
         return Result.ok(result);
     }
 }

@@ -107,4 +107,19 @@ public interface ManageService {
      */
     Map getSkuValueIdsMap(Long spuId);
 
+    /**
+     * 根据spuid获取商品海报
+     * @param spuId
+     * @return
+     */
+    List<SpuPoster> findSpuPosterBySpuId(Long spuId);
+
+
+    /**
+     * 通过skuId 集合来查询数据
+     * @param skuId
+     * @return
+     */
+    List<BaseAttrInfo> getAttrList(Long skuId);
+
 }
