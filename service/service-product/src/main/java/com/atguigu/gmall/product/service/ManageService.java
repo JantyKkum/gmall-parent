@@ -7,7 +7,9 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author: Janty
@@ -82,5 +84,27 @@ public interface ManageService {
      */
     BaseCategoryView getCategoryViewByCategory3Id(Long category3Id);
 
+    /**
+     * 获取sku价格
+     * @param skuId
+     * @return
+     */
+    BigDecimal getSkuPrice(Long skuId);
+
+    /**
+     * 根据spuId，skuId 查询销售属性集合
+     * @param skuId
+     * @param spuId
+     * @return
+     */
+    List<SpuSaleAttr> getSpuSaleAttrListCheckBySku(Long skuId, Long spuId);
+
+
+    /**
+     * 根据spuId 查询map 集合属性
+     * @param spuId
+     * @return
+     */
+    Map getSkuValueIdsMap(Long spuId);
 
 }

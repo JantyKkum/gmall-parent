@@ -14,8 +14,11 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author: Janty
@@ -421,5 +424,44 @@ public class ManageServiceImpl implements ManageService {
         return baseCategoryViewMapper.selectById(category3Id);
     }
 
+    /**
+     * 获取sku价格
+     * @param skuId
+     * @return
+     */
+    @Override
+    public BigDecimal getSkuPrice(Long skuId) {
+        SkuInfo skuInfo = skuInfoMapper.selectById(skuId);
+        if(null != skuInfo) {
+            return skuInfo.getPrice();
+        }
+        return new BigDecimal("0");
+    }
+
+    /**
+     * 根据spuId，skuId 查询销售属性集合
+     * @param skuId
+     * @param spuId
+     * @return
+     */
+    @Override
+    public List<SpuSaleAttr> getSpuSaleAttrListCheckBySku(Long skuId, Long spuId) {
+        return spuSaleAttrMapper.selectSpuSaleAttrListCheckBySku(skuId, spuId);
+    }
+
+    @Override
+    public Map getSkuValueIdsMap(Long spuId) {
+        Map<Object, Object> map = new HashMap<>();
+        // key = 125|123 ,value = 37
+        List<Map> mapList = skuSaleAttrValueMapper.selectSaleAttrValuesBySpu(spuId);
+        if (mapList != null && mapList.size() > 0) {
+            // 循环遍历
+            for (Map skuMap : mapList) {
+                // key = 125|123 ,value = 37
+                map.put(skuMap.get("value_ids"), skuMap.get("sku_id"));
+            }
+        }
+        return map;
+    }
 
 }
