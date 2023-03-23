@@ -122,4 +122,5 @@ public interface ManageService {
      */
     List<BaseAttrInfo> getAttrList(Long skuId);
 
+    BigDecimal getPrice(Long skuId);
 }
