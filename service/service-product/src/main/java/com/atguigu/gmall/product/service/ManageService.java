@@ -1,5 +1,6 @@
 package com.atguigu.gmall.product.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.atguigu.gmall.common.result.Result;
 import com.atguigu.gmall.model.product.*;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -123,4 +124,11 @@ public interface ManageService {
     List<BaseAttrInfo> getAttrList(Long skuId);
 
     BigDecimal getPrice(Long skuId);
+
+    /**
+     * 获取全部分类信息
+     * @return
+     */
+    List<JSONObject> getBaseCategoryList();
+
 }
