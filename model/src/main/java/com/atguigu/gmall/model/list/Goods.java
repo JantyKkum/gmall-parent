@@ -13,7 +13,7 @@ import java.util.List;
 // Index = goods , Type = info  es 7.8.0 逐渐淡化type！  修改！
 @Data
 @Document(indexName = "goods" , shards = 3,replicas = 2)
-public class Goods {
+public class  Goods {
     // 商品Id skuId
     @Id
     private Long id;

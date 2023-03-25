@@ -131,4 +131,11 @@ public interface ManageService {
      */
     List<JSONObject> getBaseCategoryList();
 
+    /**
+     * 通过品牌Id 来查询数据
+     * @param tmId
+     * @return
+     */
+    BaseTrademark getTrademarkByTmId(Long tmId);
+
 }

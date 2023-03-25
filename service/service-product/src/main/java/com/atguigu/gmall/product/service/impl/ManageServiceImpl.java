@@ -89,6 +89,9 @@ public class ManageServiceImpl implements ManageService {
     @Autowired
     private RedissonClient redissonClient;
 
+    @Autowired
+    private BaseTrademarkMapper baseTrademarkMapper;
+
 
     /**
      * 查询一级分类
@@ -747,5 +750,14 @@ public class ManageServiceImpl implements ManageService {
         return list;
     }
 
+    /**
+     * 通过品牌Id 来查询数据
+     * @param tmId
+     * @return
+     */
+    @Override
+    public BaseTrademark getTrademarkByTmId(Long tmId) {
+        return baseTrademarkMapper.selectById(tmId);
+    }
 
 }
