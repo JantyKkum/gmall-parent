@@ -98,8 +98,6 @@ public class ListController {
         return "";
     }
 
-    前台页面数据展示：
-
     /**
      * 处理平台属性条件回显
      * @param props
@@ -125,24 +123,6 @@ public class ListController {
         return list;
     }
 
-    @GetMapping("list.html")
-    public String search(SearchParam searchParam, Model model) {
-        Result<Map> result = listFeignClient.list(searchParam);
-        model.addAllAttributes(result.getData());
-
-        //拼接url
-        String urlParam = makeUrlParam(searchParam);
-        //处理品牌条件回显
-        String trademarkParam = this.makeTrademark(searchParam.getTrademark());
-        //处理平台属性条件回显
-        List<Map<String, String>> propsParamList = this.makeProps(searchParam.getProps());
-
-        model.addAttribute("searchParam",searchParam);
-        model.addAttribute("urlParam",urlParam);
-        model.addAttribute("trademarkParam",trademarkParam);
-        model.addAttribute("propsParamList",propsParamList);
-        return "list/index";
-    }
 
     /**
      * 处理排序
